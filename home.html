@@ -1,0 +1,77 @@
+<!-- The home page 'view' -->
+<ion-header>
+  <ion-navbar>
+    <ion-title text-align="center"><br/>
+		<h2>{{ title }}</h2> <!-- String interpolation -->
+	</ion-title><br/>
+
+	<ion-buttons end> 
+		<!-- buttonDisabled set to false but can easily be changed if need to
+		disable the settings icon -->
+		<button buttonDisabled=false ion-button (click)="openSettingsPage()"><!-- Click event to openSettingsPage function -->
+			<ion-icon name="md-settings" style="zoom:1.65" vertical-align="center"></ion-icon> <!-- Use settings icon -->
+		</button>
+	</ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class = "home"> <!-- apply background settings from class "home" -->
+  <h1 id="text1">{{ displayMessage }}</h1>
+  
+  <!-- Weather Display -->
+  <ion-grid class = "weatherSettings" >
+    <ion-row>
+      <ion-col width-30>
+        <h1>News &#38; Weather for {{ newCity }} , {{ name }}.</h1> <!-- &#38; to display ampersand in HTML -->
+		<div>
+          <img id="flagImage" src="flags" alt="Country Flag">
+        </div>
+        <h2 class="weatherSettings">Temperature: {{ temp }} {{ myUnit }}</h2>
+		<h2 class="weatherSettings">Weather {{ description }}</h2>
+		<div>
+          <img id="weatherIcon" src="icon" alt="Weather Icon">
+        </div>
+		<h2 class="weatherSettings">Wind From:{{ wind }}</h2>
+	  </ion-col> 		
+	</ion-row>
+  </ion-grid>
+	
+   <!-- News Button -->
+	<button ion-button square(click)=>NEWS</button>
+	
+	  <!-- News Button and Display -->
+  <ion-grid class="newsSettings">
+    <ion-row>
+      <ion-col width-30>
+        <button ion-button (click)="getNews()">NEWS</button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col width-30>
+        <h1>News from {{ country }}</h1>
+		 <ion-thumbnail slot="start">
+                <img src="urlToImage" alt="News Image">
+              </ion-thumbnail>
+				<p>{{ article.title }}</p>
+				<p>{{ article.description }}</p>
+					<a href="{{ article.url }}"></a>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+  <h1>No News from {{ country }}</h1>
+  
+  <h1>Quote of the Day</h1>
+		<p>{{ q }}</p>
+  
+      <ion-fab right bottom> <!-- FAB (Floating Action Button), used here to provide links to social media (Instagram button has a link) -->
+    <button ion-fab color="light"><ion-icon name="arrow-dropleft"></ion-icon></button>
+    <ion-fab-list side="left">
+      <button ion-fab><ion-icon name="logo-facebook"></ion-icon></button>
+      <button ion-fab><ion-icon name="logo-twitter"></ion-icon></button>
+      <a href="https://www.instagram.com/meteireann/" target="_blank"><button ion-fab><ion-icon name="logo-instagram"></ion-icon></button></a>
+    </ion-fab-list> <!-- target="blank" above to open link in new page -->
+  </ion-fab>
+  
+ </ion-content>
+
